@@ -1,6 +1,6 @@
-import './index.sass'
-import Input from '@mui/material/Input'
-import InputAdornment from '@mui/material/InputAdornment'
+import './index.sass';
+import Input from '@mui/material/Input';
+import InputAdornment from '@mui/material/InputAdornment';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import EmailIcon from '@mui/icons-material/Email';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';

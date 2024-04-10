@@ -41,6 +41,20 @@ class AuthorizationServices {
       console.log('write all inputs');
     }
   }
+  async checkTokenValidation(token) {
+    // eslint-disable-next-line no-async-promise-executor
+    const response = await axios
+      .get(`${BACKEND_URL}/oneUser`, {
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+    if (response.statusText === "OK") {
+      return true
+    } else {
+      false
+    }
+  }
 }
 
 export default new AuthorizationServices();
