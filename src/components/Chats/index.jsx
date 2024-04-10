@@ -1,12 +1,60 @@
 import { useEffect, useState } from 'react';
 import './index.sass';
 import Chat from '../Chat'
+import IconButton from '@mui/material/IconButton';
+import AddIcon from '@mui/icons-material/Add';
+import Input from '@mui/material/Input';
+import PropTypes from 'prop-types';
 
-function Chats() {
+function Chats({ setCurrentChat }) {
   const [chats, setChats] = useState([]);
+  const [chatName, setChatName] = useState('');
+  const handleChange = (event) => {
+    setChatName(event.target.value);
+  }
+  const addChat = () => {
+    if (chatName) {
+      console.log(chatName);
+      clearInput();
+    }
+  }
+  const clearInput = () => {
+    setChatName('');
+  }
+
   useEffect(() => {
     //get chats 
     setChats([{
+      name: 'node',
+      online: 4,
+      messages: [
+        { author: 'Glak', time: '14:04', message: 'fsdfsdf' },
+        { author: 'Hayk', time: '14:44', message: 'fsdfsdf' },
+        { author: 'Hayk', time: '14:54', message: '234zsdf' },
+        { author: 'Glak', time: '14:56', message: 'gdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjh' },
+      ],
+      roomId: 'dfgdfsdfsdfgdsfggdfg'
+    }, {
+      name: 'node',
+      online: 4,
+      messages: [
+        { author: 'Glak', time: '14:04', message: 'fsdfsdf' },
+        { author: 'Hayk', time: '14:44', message: 'fsdfsdf' },
+        { author: 'Hayk', time: '14:54', message: '234zsdf' },
+        { author: 'Glak', time: '14:56', message: 'gdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjh' },
+      ],
+      roomId: 'ddfgdfgdfsggdfgdfg'
+    }, {
+      name: 'node',
+      online: 4,
+      messages: [
+        { author: 'Glak', time: '14:04', message: 'fsdfsdf' },
+        { author: 'Hayk', time: '14:44', message: 'fsdfsdf' },
+        { author: 'Hayk', time: '14:54', message: '234zsdf' },
+        { author: 'Glak', time: '14:56', message: 'gdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjhgdfgjh' },
+      ],
+      roomId: 'df4234234gdfgdfg'
+    }, {
       name: 'node',
       online: 4,
       messages: [
@@ -130,12 +178,25 @@ function Chats() {
   }, []);
   return (
 
-    <div className="chats">
-      {chats.length && chats.map(chat => {
-        return <Chat name={chat.name} time={chat.time} messages={chat.messages} online={chat.online} key={chat.roomId} />
-      })}
+    <div className="chatsDiv position-relative">
+      <div className="chats  d-flex flex-column align-items-center">
+        {chats.length && chats.map(chat => {
+          return <Chat name={chat.name} time={chat.time} messages={chat.messages} setCurrentChat={setCurrentChat} online={chat.online} roomId={chat.roomId} key={chat.roomId} />
+        })}
+      </div>
+      <div className="addDiv d-flex justify-content-around w-100 p-2">
+        <Input placeholder="Chat name..." className='ps-3 pe-3 p-2' value={chatName} onChange={handleChange} />
+        <IconButton aria-label="sendMessage" onClick={addChat}>
+          <AddIcon />
+        </IconButton>
+
+      </div>
     </div>
   )
+}
+
+Chats.propTypes = {
+  setCurrentChat: PropTypes.func
 }
 
 export default Chats
