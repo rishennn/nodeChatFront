@@ -50,6 +50,8 @@ class AuthorizationServices {
         }
       });
     if (response.statusText === "OK") {
+      localStorage.setItem('name', response.data.name);
+      localStorage.setItem('id', response.data.id);
       return true
     } else {
       false

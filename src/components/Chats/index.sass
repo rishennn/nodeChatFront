@@ -1,10 +1,9 @@
 .chatsDiv
   width: 340px
-  height: 100dvh
+  height: calc( 100dvh - 50px )
   background-color: #f1f1f1
   .chats
-    height: calc(100dvh - 50px)
-    overflow-y: scroll
+    height: calc(100dvh - 100px)
   .addDiv
     height: calc( 100dvh - (100dvh - 50px) )
     justify-items: start
@@ -12,6 +11,9 @@
     .addChatInput
       height: 50px !important
 
+.profileDiv
+  width: 340px
+  height: 50px
 .emptyPage
   width: 100%
   display: grid
